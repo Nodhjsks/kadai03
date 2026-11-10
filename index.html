@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>すもおせろ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>すもおせろ</h1>
+
+
+  <div class="names">
+    <div class="pl p1"><input id="n1" value="プレイヤー1" aria-label="プレイヤー1の名前" oninput="render()"><div class="score" id="s1">0</div></div>
+    <div class="pl p2"><input id="n2" value="プレイヤー2" aria-label="プレイヤー2の名前" oninput="render()"><div class="score" id="s2">0</div></div>
+  </div>
+
+  <div class="status" id="status"></div>
+  <div class="grid" id="grid"></div>
+
+  <svg class="arena" viewBox="0 0 400 176" role="img" aria-label="手押し相撲の土俵">
+    <rect class="dohyo" x="40" y="146" width="320" height="12" rx="6"/>
+    <g id="f1" class="man m1">
+      <line class="leg" x1="-14" y1="140" x2="-10" y2="112"/>
+      <line class="leg" x1="14" y1="140" x2="10" y2="112"/>
+      <ellipse class="sk" cx="0" cy="94" rx="32" ry="27"/>
+      <rect class="mw" x="-31" y="106" width="62" height="11" rx="5"/>
+      <text class="t" x="0" y="100">○</text>
+      <line class="arm" x1="22" y1="82" x2="55" y2="88"/>
+      <circle class="sk" cx="55" cy="88" r="7"/>
+      <circle class="sk" cx="0" cy="56" r="15"/>
+      <ellipse class="hair" cx="0" cy="46" rx="14" ry="6"/>
+      <ellipse class="hair" cx="-4" cy="37" rx="6" ry="5"/>
+      <circle class="hair" cx="7" cy="58" r="2"/>
+    </g>
+    <g id="f2" class="man m2">
+      <line class="leg" x1="-14" y1="140" x2="-10" y2="112"/>
+      <line class="leg" x1="14" y1="140" x2="10" y2="112"/>
+      <ellipse class="sk" cx="0" cy="94" rx="32" ry="27"/>
+      <rect class="mw" x="-31" y="106" width="62" height="11" rx="5"/>
+      <text class="t" x="0" y="100">×</text>
+      <line class="arm" x1="-22" y1="82" x2="-55" y2="88"/>
+      <circle class="sk" cx="-55" cy="88" r="7"/>
+      <circle class="sk" cx="0" cy="56" r="15"/>
+      <ellipse class="hair" cx="0" cy="46" rx="14" ry="6"/>
+      <ellipse class="hair" cx="4" cy="37" rx="6" ry="5"/>
+      <circle class="hair" cx="-7" cy="58" r="2"/>
+    </g>
+    <text id="lab1" class="lab" x="145" y="30"></text>
+    <text id="lab2" class="lab" x="255" y="30"></text>
+    <text id="nm1" class="nm" x="145" y="170"></text>
+    <text id="nm2" class="nm" x="255" y="170"></text>
+  </svg>
+  <div class="say" id="say"></div>
+  <div class="info" id="info"></div>
+  <div class="btns">
+    <button id="go" onclick="fight()">はっけよーい！</button>
+    <button id="harite" class="sub" onclick="toggleArmed()">張り手</button>
+    <button id="ff" class="sub" onclick="toggleFast()" aria-label="早送り">⏩</button>
+  </div>
+  <div class="tools"><button onclick="reset()">最初から</button></div>
+  <div class="rules">
+    <p>マスを選んで手押し相撲。勝った方がそのマスに置いて、オセロのように相手を裏返します。角は3点・端は2点・それ以外は1点（色の濃いマスほど高い点）で、合計点が多い方の勝ちです。盤面のどこかに、「一発逆転」「待った」「お休み」「入れ替わり」のマスが隠れています（勝負が始まるまで分かりません）。コマが全滅したら、空きマスならどこでも置けます。</p>
+    <h2>🖐 張り手とは？</h2>
+    <ul>
+      <li>マスを選んだあと、「張り手」ボタンを押して ON にしてから「のこった！」を押します。</li>
+      <li>その1回の勝負だけ、マスを選んだ人が勝つ確率が、50%から70%に上がります（相手は30%）。</li>
+      <li>1ゲームに2回まで使えます。残りの回数は、名前の横の 🖐 と、ボタンの「張り手×2」で分かります。</li>
+      <li>使えるのは、自分がマスを選ぶ番のときだけです。</li>
+      <li>勝負が始まるまで、そのマスに何が隠れているか分かりません。大事な場面や、賭けたい場面まで取っておきましょう。</li>
+    </ul>
+    <h2>⏩ 早送り</h2>
+    <p>ふつうのマスの演出を短くします。</p>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
